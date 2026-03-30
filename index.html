@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Tanush ✨</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100vh; overflow: hidden; background: #000; font-family: 'Segoe UI', sans-serif; }
+        
+        /* Hides Canva's top/bottom bars */
+        .canva-portal {
+            position: absolute;
+            top: -65px; 
+            left: 0;
+            width: 100%;
+            height: calc(100% + 130px); 
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+
+        #entry-gate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff0f3; z-index: 100; display: flex;
+            align-items: center; justify-content: center; text-align: center;
+        }
+
+        .heart { position: fixed; bottom: -10%; color: #ff4d6d; animation: float 6s linear infinite; z-index: 1; pointer-events: none; }
+        @keyframes float { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
+
+        .unlock-btn {
+            display: none; background: #ff4d6d; color: white; border: none;
+            padding: 18px 40px; border-radius: 50px; cursor: pointer;
+            font-size: 1.2rem; font-weight: bold; animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <div id="heart-container"></div>
+
+    <div id="entry-gate">
+        <div style="background:white; padding:40px; border-radius:30px; border:3px solid #ff4d6d; z-index:101; max-width: 80%;">
+            <h1 id="secretTitle" style="color:#ff4d6d; cursor: pointer;">Tanush's Birthday Portal ✨</h1>
+            <div id="timer" style="font-size:2.5rem; font-weight:bold; margin:20px; color:#ff4d6d;">00h 00m 00s</div>
+            <p id="msg" style="color: #666;">Unlocking at Midnight! 😋</p>
+            <button id="unlockBtn" class="unlock-btn" onclick="unlock()">OPEN YOUR GIFT 🎁</button>
+        </div>
+    </div>
+
+    <audio id="music" loop><source src="Meri_Zindagi_Hai_Tu_256kbps.webm" type="audio/mpeg"></audio>
+
+    <div class="canva-portal">
+        <iframe src="<div style="position: relative; width: 100%; height: 0; padding-top: 177.7778%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAHFJgRgMOg/Vqhq4FpJa1UdjsPv-hlYWA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHFJgRgMOg&#x2F;Vqhq4FpJa1UdjsPv-hlYWA&#x2F;view?utm_content=DAHFJgRgMOg&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Happy Birthday</a> by Shailly " allow="autoplay"></iframe>
+    </div>
+
+    <script>
+        const target = new Date("March 31, 2026 00:00:00").getTime();
+        
+        // 1. Countdown Logic
+        const x = setInterval(() => {
+            const now = new Date().getTime();
+            const dist = target - now;
+            const h = Math.floor((dist % (1000*60*60*24))/(1000*60*60));
+            const m = Math.floor((dist % (1000*60*60))/(1000*60));
+            const s = Math.floor((dist % (1000*60))/1000);
+            document.getElementById("timer").innerHTML = h + "h " + m + "m " + s + "s";
+            if (dist < 0) {
+                clearInterval(x);
+                document.getElementById("timer").style.display = "none";
+                document.getElementById("unlockBtn").style.display = "block";
+            }
+        }, 1000);
+
+        // 2. Secret "Triple Tap" Logic
+        let tapCount = 0;
+        document.getElementById('secretTitle').addEventListener('click', function() {
+            tapCount++;
+            if (tapCount === 3) {
+                document.getElementById("unlockBtn").style.display = "block";
+                document.getElementById("timer").innerHTML = "ADMIN ACCESS";
+                alert("Secret Unlocked! Check the button below.");
+            }
+        });
+
+        // 3. Unlock Function
+        function unlock() {
+            document.getElementById("music").play();
+            document.getElementById("entry-gate").style.display = "none";
+        }
+
+        // 4. Floating Hearts
+        function createHeart() {
+            const h = document.createElement('div');
+            h.className = 'heart'; h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('heart-container').appendChild(h);
+            setTimeout(() => h.remove(), 6000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
